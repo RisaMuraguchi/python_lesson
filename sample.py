@@ -14,3 +14,10 @@ stores = [
   }
 ]
 
+# GET /store/<string:name>
+@app.route('/stores/<string:name>')
+def get_store(name):
+  for store in stores:
+    if store["name"] == name:
+      return jsonify(store)
+  return jsonify({"message": "no store named {} found.".format(name)})  
